@@ -44,9 +44,16 @@ set clipboard=unnamed
 
 :set textwidth=0
 :set wrapmargin=0
-"Default settings
+
+" Format specific settings
+
+" Orgmode
 au BufNewFile,BufRead *.org
-    \ set textwidth=0
+    \ set textwidth=0 |
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2
+
  "python 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -71,7 +78,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 " clear search highlights
 " map ; :nohlsearch <CR>
 
-" Clear highlighting on escape in normal mode
+" Clear highlighting, and close extra windows on escape in normal mode
 nnoremap <esc> :noh<return>:on<return><esc>
 nnoremap <esc>^[ <esc>^[
 
