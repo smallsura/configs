@@ -34,7 +34,7 @@ map <F2> :Goyo <CR>
 nmap <F9> :TagbarOpen fjc<CR>
 
 " switch between buffers
-nmap ` :b 
+nmap ` :bnext<CR> 
 
 "make clipboard work
 set clipboard=unnamed
@@ -173,3 +173,6 @@ au FileType python setlocal formatprg=autopep8\ -
 "make < > shifts keep selection
 vnoremap < <gv
 vnoremap > >gv
+
+" make airline show buffers
+let g:airline#extensions#tabline#enabled = 1
