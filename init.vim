@@ -170,3 +170,6 @@ let g:polyglot_disabled = ['python']
 
 au FileType python setlocal formatprg=autopep8\ -
 
+"make < > shifts keep selection
+vnoremap < <gv
+vnoremap > >gv
