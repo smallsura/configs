@@ -24,6 +24,7 @@ Plug 'klen/python-mode', {'branch': 'develop'}
 Plug 'henrik/vim-indexed-search'
 "Plug 'nvie/vim-flake8'
 Plug 'kien/ctrlp.vim'
+Plug '907th/vim-auto-save'
 nnoremap <silent> <leader>- :Goyo<cr>
 call plug#end()
 
@@ -176,3 +177,6 @@ vnoremap > >gv
 
 " make airline show buffers
 let g:airline#extensions#tabline#enabled = 1
+
+let g:auto_save = 1  " enable AutoSave on Vim startup
+let g:auto_save_silent = 1  " do not display the auto-save notification
