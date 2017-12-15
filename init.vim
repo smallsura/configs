@@ -184,3 +184,6 @@ let g:auto_save_silent = 1  " do not display the auto-save notification
 set mouse=a
 
 let airline_theme='hybridline'
+
+" compile latex using make
+nmap <F12> :!make view<CR>
