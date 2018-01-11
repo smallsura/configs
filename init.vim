@@ -1,9 +1,8 @@
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'morhetz/gruvbox'
+"Plug 'morhetz/gruvbox'
 Plug 'junegunn/goyo.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -20,17 +19,23 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'raimondi/delimitmate'
 Plug 'jceb/vim-orgmode'
 Plug 'tpope/vim-speeddating'
-Plug 'klen/python-mode', {'branch': 'develop'}
 Plug 'henrik/vim-indexed-search'
 Plug 'kien/ctrlp.vim'
 Plug '907th/vim-auto-save'
 Plug 'lervag/vimtex'
+Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'tpope/vim-fireplace'
+Plug 'roosta/srcery'
+Plug 'klen/python-mode', {'branch': 'develop'}
+Plug 'terryma/vim-multiple-cursors'
+Plug 'godlygeek/tabular'
 nnoremap <silent> <leader>- :Goyo<cr>
 call plug#end()
 
 " Clear highlighting, and close extra windows on escape in normal mode
 nnoremap <esc> :noh<return>:on<return><esc>
 nnoremap <esc>^[ <esc>^[
+
 
 " zen mode
 map <F2> :Goyo <CR>
@@ -112,7 +117,7 @@ au BufNewFile,BufRead *.js, *.html, *.css
 set linebreak
 
 " Theme
-colorscheme gruvbox
+colorscheme srcery
 set background=dark
 
 set updatetime=250
@@ -158,6 +163,11 @@ let g:neomake_python_enabled_makers = ['flake8']
 nnoremap '' :call NERDComment(0,"toggle")<CR>
 vnoremap '' :call NERDComment(0,"toggle")<CR>
 
+" polyglot settings
+" we want pymode to handle the highlighting so disable python for polyglot
+" and vimtex for Latex
+let g:polyglot_disabled = ['python', 'latex']
+
 " python-mode settings
 " Load the whole plugin
 "let g:pymode = 1
@@ -193,13 +203,7 @@ let g:pymode_python = 'python3'
 let g:pymode_syntax = 1
 let g:pymode_syntax_all = 1
 let g:pymode_syntax_print_as_function = 1
-let g:pymode_syntax_highlight_equal_operator = g:pymode_syntax_all
-
-" polyglot settings
-" we want pymode to handle the highlighting so disable python for polyglot
-let g:polyglot_disabled = ['python']
-" and vimtex for Latex
-let g:polyglot_disabled = ['latex']
+let g:pymode_syntax_slow_sync = 1
 
 au FileType python setlocal formatprg=autopep8\ -
 
@@ -213,11 +217,22 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:auto_save = 1  " enable AutoSave on Vim startup
 let g:auto_save_silent = 1  " do not display the auto-save notification
-let airline_theme='hybridline'
+let airline_theme='powerlineish'
 
 " mouse settings 
 set mouse=a
 
 " compile latex using make
 nmap <F12> :!make view<CR>
+
+"Rainbow parenthesis
+" Activation based on file type
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
+
+map <F5> :RainbowParentheses!! <CR>
+
+set termguicolors
 
